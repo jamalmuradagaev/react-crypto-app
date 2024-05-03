@@ -1,45 +1,45 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Layout, Card, Statistic, List, Typography, Spin, Tag } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-import { fakeFetchCrypro, fetchAssets } from '../../api';
-import { Capitolize, percentDifference } from '../../utils'
+// import { fakeFetchCrypro, fetchAssets } from '../../api';
+// import { Capitolize, percentDifference } from '../../utils'
+import { Capitolize } from '../../utils'
+import CryptoContext from '../../Context/CryptoContext';
 
 const siderStyle = {
   padding: '1rem',
 };
 
 export default function AppSider() {
-  const [loading, setLoading] = useState(false)
-  const [crypto, setCrypto] = useState([])
-  const [assets, setAssets] = useState([])
+  // const [loading, setLoading] = useState(false)
+  // const [crypto, setCrypto] = useState([])
+  // const [assets, setAssets] = useState([])
 
-  useEffect(() => {
-    async function preload() {
-      setLoading(true)
-      const { result } = await fakeFetchCrypro()
-      const assets = await fetchAssets()
+  // useEffect(() => {
+  //   async function preload() {
+  //     setLoading(true)
+  //     const { result } = await fakeFetchCrypro()
+  //     const assets = await fetchAssets()
 
-      setAssets(assets.map(asset => {
-        const coin = result.find(c => c.id === asset.id)
-        return {
-          grow: asset.price < coin.price, // определение роста-падения монеты
-          growPercent: percentDifference(asset.price, coin.price), //  процент роста-падения монеты
-          totalAmount: asset.amount * coin.price,  // сумма в криптовалюте
-          totalProfit: asset.amount * coin.price - asset.amount * asset.price, //  прибыль от инвестирования
-          ...asset
-        }
-      }))
-      setCrypto(result)
-      setLoading(false)
+  //     setAssets(assets.map(asset => {
+  //       const coin = result.find(c => c.id === asset.id)
+  //       return {
+  //         grow: asset.price < coin.price, // определение роста-падения монеты
+  //         growPercent: percentDifference(asset.price, coin.price), //  процент роста-падения монеты
+  //         totalAmount: asset.amount * coin.price,  // сумма в криптовалюте
+  //         totalProfit: asset.amount * coin.price - asset.amount * asset.price, //  прибыль от инвестирования
+  //         ...asset
+  //       }
+  //     }))
+  //     setCrypto(result)
+  //     setLoading(false)
 
-      return true
-    }
-    preload()
-  }, [])
+  //     return true
+  //   }
+  //   preload()
+  // }, [])
+  const {loading, assets} = useContext(CryptoContext)
 
-  if (loading) {
-    return <Spin fullscreen />
-  }
 
 
   return (
