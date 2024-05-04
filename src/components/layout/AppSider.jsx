@@ -38,8 +38,7 @@ export default function AppSider() {
   //   }
   //   preload()
   // }, [])
-  const {loading, assets} = useContext(CryptoContext)
-
+  const { loading, assets } = useContext(CryptoContext)
 
 
   return (
