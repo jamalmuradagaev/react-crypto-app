@@ -13,7 +13,7 @@ const validateMessages = {
     }
 }
 
-export default function AddAssetForm({}) {
+export default function AddAssetForm({onClose}) {
     const { crypto, addAsset } = useCrypto()
     const [coin, setCoin] = useState(null)
     const [form] = Form.useForm()
@@ -27,7 +27,7 @@ export default function AddAssetForm({}) {
                 title="New Asset Added"
                 subTitle={`Added ${assetRef.current.amount} of ${coin.name} by price ${assetRef.current.price}`}
                 extra={[
-                    <Button type="primary" key="console">
+                    <Button type="primary" key="console" onClick={onClose}>
                         Close
                     </Button>
                 ]}

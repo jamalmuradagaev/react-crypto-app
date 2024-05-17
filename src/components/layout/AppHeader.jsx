@@ -21,15 +21,15 @@ export default function AppHeader() {
   const [drawer, setDrawer] = useState(false)
   const { crypto } = useCrypto();
 
-  useEffect(() => {
-    const keypress = event => {
-      if (event.key === '/'){
-        setSelect(!select)
-      }
-    document.addEventListener('keypress', keypress)
-    return () => { document.removeEventListener('keypress', keypress) }
-    }
-  }, [])
+  // useEffect(() => {
+  //   const keypress = event => {
+  //     if (event.key === '/'){
+  //       setSelect((prev) => !prev)
+  //     }
+  //   document.addEventListener('keypress', keypress)
+  //   return () => { document.removeEventListener('keypress', keypress) }
+  //   }
+  // }, [])
 
   function handleSelect(value) {
     setModal(true);
@@ -39,13 +39,11 @@ export default function AppHeader() {
   return (
     <Layout.Header style={headerStyle}>
       <Select
-        mode="multiple"
         style={{ width: '250px' }}
         open={select}
         value="click to open"
-        onClick={() => (setSelect(!select))}
+        onClick={() => (setSelect((prev) => !prev))}
         onSelect={handleSelect}
-        optionLabelProp='label'
         options={crypto.map(coin => ({
           label: coin.name,
           value: coin.id,
@@ -63,7 +61,7 @@ export default function AppHeader() {
       <Modal
         title="Basic Modal"
         open={modal}
-        onCancel={() => setDrawer(false)}
+        onCancel={() => setModal(false)}
         footer={null}
       >
         <CoinInfoModal coin={coin}/>
