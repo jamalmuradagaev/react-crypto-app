@@ -18,7 +18,7 @@ export default function AppHeader() {
   const [select, setSelect] = useState(false);
   const [modal, setModal] = useState(false);
   const [coin, setCoin] = useState(null)
-  const [drawer, setDrawer] = useState(null)
+  const [drawer, setDrawer] = useState(false)
   const { crypto } = useCrypto();
 
   useEffect(() => {
@@ -56,6 +56,7 @@ export default function AppHeader() {
             <img style={{ width: '20px' }} src={option.data.icon} alt={option.data.label} /> {option.data.label}
           </Space>
         )}
+        
       />
       <Button type="primary" onClick={() => setDrawer(true)}>Primary Button</Button>
 
@@ -68,8 +69,8 @@ export default function AppHeader() {
         <CoinInfoModal coin={coin}/>
       </Modal>
 
-      <Drawer width={'600px'} title="Basic Drawer" onClose={() => setDrawer(false)} open={drawer}>
-        <AddAssetForm />
+      <Drawer width={'600px'} title="Basic Drawer" onClose={() => setDrawer(false)} open={drawer} destroyOnClose={true}>
+        <AddAssetForm onClose={() => setDrawer(false)}/>
       </Drawer>
     </Layout.Header>
   );

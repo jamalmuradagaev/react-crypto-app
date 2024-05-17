@@ -1,18 +1,22 @@
 import React from 'react'
 import { Flex, Tag, Typography, Divider } from "antd"
 import { Capitolize } from '../utils'
+import CoinInfo from './CoinInfo'
 
 
 
 export default function CoinInfoModal({ coin }) {
 
-  return (<>
-    <Flex align='ceneter'>
+  return (
+  <>
+    {/* <Flex align='ceneter'>
       <img src={coin.icon} alt={coin.name} style={{ width: 40, marginRight: 10 }} />
       <Typography.Title level={2} style={{ margin: 0 }}>
         ({coin.symbol}) {coin.name}
       </Typography.Title>
-    </Flex>
+    </Flex> */}
+
+    <CoinInfo coin={coin} withSymbol/>
 
     <Divider />
 
