@@ -63,7 +63,7 @@ export default function AppHeader() {
       <Modal
         title="Basic Modal"
         open={modal}
-        onCancel={() => setModal(false)}
+        onCancel={() => setDrawer(false)}
         footer={null}
       >
         <CoinInfoModal coin={coin}/>

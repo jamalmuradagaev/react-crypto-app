@@ -21,6 +21,7 @@ export function CryptoContextProvider({ children }) {
                 growPercent: percentDifference(asset.price, coin.price), //  процент роста-падения монеты
                 totalAmount: asset.amount * coin.price,  // сумма в криптовалюте
                 totalProfit: asset.amount * coin.price - asset.amount * asset.price, //  прибыль от инвестирования
+                name: coin.name,
                 ...asset
             }
         }
